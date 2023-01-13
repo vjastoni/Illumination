@@ -47,6 +47,7 @@ public class AddEditQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent editQuestion = new Intent(getApplicationContext(), EditQuestion.class);
+                editQuestion.putExtra("Subject", quiz.getSubject());
                 startActivity(editQuestion);
             }
         });
@@ -55,6 +56,7 @@ public class AddEditQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent addQuestion = new Intent(getApplicationContext(), AddQuestion.class);
+                addQuestion.putExtra("Subject", quiz.getSubject());
                 startActivity(addQuestion);
             }
         });

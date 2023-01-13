@@ -1,6 +1,9 @@
 package com.example.illumination_test.Fragment;
 
-public class QuestionEdit {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class QuestionEdit implements Parcelable {
     private String number;
     private String question;
 
@@ -8,6 +11,23 @@ public class QuestionEdit {
         this.number = number;
         this.question = question;
     }
+
+    protected QuestionEdit(Parcel in) {
+        number = in.readString();
+        question = in.readString();
+    }
+
+    public static final Creator<QuestionEdit> CREATOR = new Creator<QuestionEdit>() {
+        @Override
+        public QuestionEdit createFromParcel(Parcel in) {
+            return new QuestionEdit(in);
+        }
+
+        @Override
+        public QuestionEdit[] newArray(int size) {
+            return new QuestionEdit[size];
+        }
+    };
 
     public String getNumber() {
         return number;
@@ -31,5 +51,16 @@ public class QuestionEdit {
                 "number='" + number + '\'' +
                 ", question='" + question + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(number);
+        dest.writeString(question);
     }
 }

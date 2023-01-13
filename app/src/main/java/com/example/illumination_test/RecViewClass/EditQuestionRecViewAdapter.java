@@ -1,5 +1,6 @@
 package com.example.illumination_test.RecViewClass;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.illumination_test.Activity.AddEditQuestion;
 import com.example.illumination_test.Activity.PlayQuiz;
+import com.example.illumination_test.Activity.UpdateQuestion;
 import com.example.illumination_test.Fragment.QuestionEdit;
 import com.example.illumination_test.R;
 
@@ -36,9 +39,18 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtEditQuestionNumber.setText(questionEdits.get(position).getNumber());
         holder.questionHolder.setText(questionEdits.get(position).getQuestion());
+        holder.editQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, UpdateQuestion.class);
+                intent.putExtra(UpdateQuestion.QUESTION, questionEdits.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -55,12 +67,13 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView txtEditQuestionNumber, questionHolder;
-        private CardView parent;
+        private CardView parent, editQuestion;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtEditQuestionNumber = itemView.findViewById(R.id.txtEditQuestionNumber);
             questionHolder = itemView.findViewById(R.id.questionHolder);
             parent = itemView.findViewById(R.id.parent);
+            editQuestion = itemView.findViewById(R.id.editQuestion);
         }
     }
 }
