@@ -12,11 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.illumination_test.Activity.AddEditQuestion;
-import com.example.illumination_test.Activity.PlayQuiz;
+import com.example.illumination_test.Activity.AddQuestion;
 import com.example.illumination_test.Activity.UpdateQuestion;
 import com.example.illumination_test.Fragment.QuestionEdit;
 import com.example.illumination_test.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -33,7 +36,7 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_quiz_item,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.edit_quiz_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -47,7 +50,7 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, UpdateQuestion.class);
-                intent.putExtra(UpdateQuestion.QUESTION, questionEdits.get(position));
+                intent.putExtra(AddQuestion.QUESTION, questionEdits.get(position));
                 context.startActivity(intent);
             }
         });
@@ -64,10 +67,11 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtEditQuestionNumber, questionHolder;
         private CardView parent, editQuestion;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtEditQuestionNumber = itemView.findViewById(R.id.txtEditQuestionNumber);
@@ -76,4 +80,5 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
             editQuestion = itemView.findViewById(R.id.editQuestion);
         }
     }
+
 }

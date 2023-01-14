@@ -33,7 +33,7 @@ import java.util.List;
 
 public class AddQuestion extends AppCompatActivity {
 
-
+    public static final String QUESTION = "question";
     Toolbar addQuestionToolbar;
     TextView totalOfQuestion;
     TextInputEditText edtQuestion, edtOption1, edtOption2, edtOption3, edtOption4;
@@ -49,6 +49,7 @@ public class AddQuestion extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         String subject = getIntent().getStringExtra("Subject");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
@@ -131,7 +132,6 @@ public class AddQuestion extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Successfully added!", Toast.LENGTH_SHORT).show();
 
-
                 edtQuestion.setText("");
                 edtOption1.setText("");
                 edtOption2.setText("");
@@ -148,4 +148,5 @@ public class AddQuestion extends AppCompatActivity {
             }
         });
     }
+
 }
