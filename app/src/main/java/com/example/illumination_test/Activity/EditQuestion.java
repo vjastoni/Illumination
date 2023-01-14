@@ -54,7 +54,10 @@ public class EditQuestion extends AppCompatActivity {
                     for (DataSnapshot question : snapshot.getChildren()) {
                         if (!(question.getValue().equals(subject))) {
                             Question questions = question.getValue(Question.class);
-                            questionEdits.add(new QuestionEdit(String.valueOf(questionNo[0]), questions.getQuestion()));
+                            questionEdits.add(new QuestionEdit(String.valueOf(questionNo[0]), questions.getQuestion(),
+                                    questions.getOption1(), questions.getOption2(),
+                                    questions.getOption3(), questions.getOption4(),
+                                    questions.getAnswer()));
                             EditQuestionRecViewAdapter adapter = new EditQuestionRecViewAdapter(EditQuestion.this);
                             adapter.setQuestionEdits(questionEdits);
                             questionNo[0]++;

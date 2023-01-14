@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.example.illumination_test.Activity.AddQuestion;
 import com.example.illumination_test.Activity.UpdateQuestion;
 import com.example.illumination_test.Fragment.QuestionEdit;
 import com.example.illumination_test.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -50,7 +52,13 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, UpdateQuestion.class);
-                intent.putExtra(AddQuestion.QUESTION, questionEdits.get(position));
+//                intent.putExtra(AddQuestion.QUESTION, questionEdits.get(position));
+                intent.putExtra("question", questionEdits.get(position).getQuestion());
+                intent.putExtra("option1", questionEdits.get(position).getOption1());
+                intent.putExtra("option2", questionEdits.get(position).getOption2());
+                intent.putExtra("option3", questionEdits.get(position).getOption3());
+                intent.putExtra("option4", questionEdits.get(position).getOption4());
+                intent.putExtra("answer", questionEdits.get(position).getAnswer());
                 context.startActivity(intent);
             }
         });
@@ -71,13 +79,13 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
 
         private TextView txtEditQuestionNumber, questionHolder;
         private CardView parent, editQuestion;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtEditQuestionNumber = itemView.findViewById(R.id.txtEditQuestionNumber);
             questionHolder = itemView.findViewById(R.id.questionHolder);
             parent = itemView.findViewById(R.id.parent);
             editQuestion = itemView.findViewById(R.id.editQuestion);
+
         }
     }
 
