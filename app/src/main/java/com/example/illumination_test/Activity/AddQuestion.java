@@ -59,10 +59,10 @@ public class AddQuestion extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     questionSize = snapshot.getChildrenCount();
                     totalOfQuestion.setText("Question " + questionSize);
-                }else{
+                } else {
                     questionSize = 1;
                 }
             }
@@ -116,14 +116,14 @@ public class AddQuestion extends AppCompatActivity {
         btnAddQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String questionNo = "Question"+questionSize;
+                String questionNo = "Question" + questionSize;
 
                 Question question = new Question(edtQuestion.getText().toString(),
                         edtOption1.getText().toString(),
                         edtOption2.getText().toString(),
                         edtOption3.getText().toString(),
                         edtOption4.getText().toString(),
-                        correctAns);
+                        correctAns, subject);
 
                 DatabaseReference databaseReference;
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("Quizzes").child(subject);

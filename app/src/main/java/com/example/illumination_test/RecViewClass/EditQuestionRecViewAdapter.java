@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.illumination_test.Activity.AddQuestion;
+import com.example.illumination_test.Activity.EditQuestion;
 import com.example.illumination_test.Activity.UpdateQuestion;
 import com.example.illumination_test.Fragment.QuestionEdit;
 import com.example.illumination_test.R;
@@ -59,18 +60,22 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
                 intent.putExtra("option3", questionEdits.get(position).getOption3());
                 intent.putExtra("option4", questionEdits.get(position).getOption4());
                 intent.putExtra("answer", questionEdits.get(position).getAnswer());
+                intent.putExtra("Subject", questionEdits.get(position).getSubject());
+                intent.putExtra("questionNo", questionEdits.get(position).getQuestionNo());
                 context.startActivity(intent);
             }
         });
         holder.deleteQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                DatabaseReference databaseReference;
-//                databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-//                        .child(user.getUid())
-//                        .child("Quizzes")
-//                        .child(subject);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference databaseReference;
+                databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(user.getUid())
+                        .child("Quizzes")
+                        .child(questionEdits.get(position).getSubject())
+                        .child(questionEdits.get(position).getQuestionNo());
+                databaseReference.removeValue();
             }
         });
     }

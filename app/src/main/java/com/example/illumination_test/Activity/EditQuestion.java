@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -57,16 +58,14 @@ public class EditQuestion extends AppCompatActivity {
                             questionEdits.add(new QuestionEdit(String.valueOf(questionNo[0]), questions.getQuestion(),
                                     questions.getOption1(), questions.getOption2(),
                                     questions.getOption3(), questions.getOption4(),
-                                    questions.getAnswer()));
+                                    questions.getAnswer(), subject, question.getKey()));
                             EditQuestionRecViewAdapter adapter = new EditQuestionRecViewAdapter(EditQuestion.this);
                             adapter.setQuestionEdits(questionEdits);
                             questionNo[0]++;
                             editQuestionRecView.setAdapter(adapter);
                             editQuestionRecView.setLayoutManager(new GridLayoutManager(EditQuestion.this, 2));
                         }
-
                     }
-
                 }
             }
 

@@ -11,8 +11,30 @@ public class QuestionEdit implements Parcelable {
     private String option3;
     private String option4;
     private String answer;
+    private String subject;
+    private String questionNo;
 
-    public QuestionEdit(String number, String question, String option1, String option2, String option3, String option4, String answer) {
+    public String getQuestionNo() {
+        return questionNo;
+    }
+
+    public void setQuestionNo(String questionNo) {
+        this.questionNo = questionNo;
+    }
+
+
+
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+
+    public QuestionEdit(String number, String question, String option1, String option2, String option3, String option4, String answer, String subject, String questionNo) {
         this.number = number;
         this.question = question;
         this.option1 = option1;
@@ -20,6 +42,8 @@ public class QuestionEdit implements Parcelable {
         this.option3 = option3;
         this.option4 = option4;
         this.answer = answer;
+        this.subject = subject;
+        this.questionNo = questionNo;
     }
 
     protected QuestionEdit(Parcel in) {
