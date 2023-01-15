@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.illumination_test.R;
 import com.google.android.material.button.MaterialButton;
@@ -33,14 +34,19 @@ public class UpdateQuestion extends AppCompatActivity {
     String sQuestion, sOption1, sOption2, sOption3, sOption4, sAnswer;
     DatabaseReference databaseReference;
 
+    String subject = getIntent().getStringExtra("Subject");
+    long questionSize = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_question);
 
-//        String subject = getIntent().getStringExtra("Subject");
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("Quizzes").child(subject);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+//                .child(user.getUid())
+//                .child("Quizzes")
+//                .child(subject);
 
         addQuestionToolbar = findViewById(R.id.addQuestionToolbar);
         totalOfQuestion = findViewById(R.id.totalOfQuestion);
@@ -57,6 +63,17 @@ public class UpdateQuestion extends AppCompatActivity {
         btnUpdateQuestion = findViewById(R.id.btnUpdateQuestion);
 
         showQuestion();
+
+        btnUpdateQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isQuestionChange()) {
+                    Toast.makeText(UpdateQuestion.this, "Saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(UpdateQuestion.this, "No Changes Found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -76,5 +93,21 @@ public class UpdateQuestion extends AppCompatActivity {
         updateOption3.setText(sOption3);
         updateOption4.setText(sOption4);
 
+    }
+
+    //DITO ATA PROBLEMA DI KO MAPATH NG MAAYOS YUNG REFERENCE
+    public boolean isQuestionChange() {
+        String questionNo = "Question"+questionSize;
+        if (!sQuestion.equals(updateQuestion.getText().toString())) {
+            databaseReference.child("Quizzes")
+                    .child(subject)
+                    .child(questionNo)
+                    .child("question")
+                    .setValue(updateQuestion.getText().toString());
+            sQuestion = updateQuestion.getText().toString();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
