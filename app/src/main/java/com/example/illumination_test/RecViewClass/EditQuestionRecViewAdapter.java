@@ -62,7 +62,17 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
                 context.startActivity(intent);
             }
         });
-
+        holder.deleteQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                DatabaseReference databaseReference;
+//                databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+//                        .child(user.getUid())
+//                        .child("Quizzes")
+//                        .child(subject);
+            }
+        });
     }
 
     @Override
@@ -78,13 +88,14 @@ public class EditQuestionRecViewAdapter extends RecyclerView.Adapter<EditQuestio
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtEditQuestionNumber, questionHolder;
-        private CardView parent, editQuestion;
+        private CardView parent, editQuestion, deleteQuestion;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtEditQuestionNumber = itemView.findViewById(R.id.txtEditQuestionNumber);
             questionHolder = itemView.findViewById(R.id.questionHolder);
             parent = itemView.findViewById(R.id.parent);
             editQuestion = itemView.findViewById(R.id.editQuestion);
+            deleteQuestion = itemView.findViewById(R.id.deleteQuestion);
 
         }
     }
