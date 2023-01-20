@@ -60,6 +60,7 @@ public class QuizRecViewAdapter extends RecyclerView.Adapter<QuizRecViewAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PlayQuiz.class);
+                intent.putExtra(AddEditQuestion.QUIZ, quizzes.get(position));
                 context.startActivity(intent);
             }
         });

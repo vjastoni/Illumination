@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="1/50"
+                        android:text="       "
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
@@ -100,7 +100,7 @@
         android:layout_below="@id/timeQuestionContainer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="Who is the owner of Java?"
+        android:text="Click next button to start."
         android:textColor="@color/white"
         android:textSize="16sp" />
 
@@ -122,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#33385e"
+                android:id="@+id/playQuizOptionA"
                 android:clickable="true"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp"
@@ -134,7 +135,7 @@
                     android:backgroundTint="#b3dfb2"
                     android:button="@drawable/transparent_bg"
                     android:paddingLeft="20dp"
-                    android:text="a.   Oracle Corporation"
+                    android:text="a."
                     android:textColor="@color/white" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -159,7 +160,7 @@
                     android:backgroundTint="#b3dfb2"
                     android:button="@drawable/transparent_bg"
                     android:paddingLeft="20dp"
-                    android:text="b. Mc Donalds"
+                    android:text="b."
                     android:textColor="@color/white" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -184,7 +185,7 @@
                     android:backgroundTint="#b3dfb2"
                     android:button="@drawable/transparent_bg"
                     android:paddingLeft="20dp"
-                    android:text="c.   Jollibee"
+                    android:text="c."
                     android:textColor="@color/white" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -209,7 +210,7 @@
                     android:backgroundTint="#b3dfb2"
                     android:button="@drawable/transparent_bg"
                     android:paddingLeft="20dp"
-                    android:text="d.   Kenny Rogers"
+                    android:text="d."
                     android:textColor="@color/white" />
 
             </com.google.android.material.card.MaterialCardView>

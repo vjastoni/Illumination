@@ -73,23 +73,19 @@ public class UpdateQuestion extends AppCompatActivity {
                 int id = rdgOptionsContainer.getCheckedRadioButtonId();
                 switch (id) {
                     case R.id.rbtUpdateOption1:
-                        sAnswer = "option1";
-                        System.out.println(sAnswer);
+                        sAnswer = rbtUpdateOption1.getText().toString();
                         changedAnswer = true;
                         break;
                     case R.id.rbtUpdateOption2:
-                        sAnswer = "option2";
-                        System.out.println(sAnswer);
+                        sAnswer = rbtUpdateOption2.getText().toString();
                         changedAnswer = true;
                         break;
                     case R.id.rbtUpdateOption3:
-                        sAnswer = "option3";
-                        System.out.println(sAnswer);
+                        sAnswer = rbtUpdateOption3.getText().toString();
                         changedAnswer = true;
                         break;
                     case R.id.rbtUpdateOption4:
-                        sAnswer = "option4";
-                        System.out.println(sAnswer);
+                        sAnswer = rbtUpdateOption4.getText().toString();
                         changedAnswer = true;
                         break;
                     default:

@@ -95,16 +95,16 @@ public class AddQuestion extends AppCompatActivity {
                 int id = rdgOptionsContainer.getCheckedRadioButtonId();
                 switch (id) {
                     case R.id.rbtOption1:
-                        correctAns = "option" + 1;
+                        correctAns = edtOption1.getText().toString();
                         break;
                     case R.id.rbtOption2:
-                        correctAns = "option" + 2;
+                        correctAns = edtOption2.getText().toString();
                         break;
                     case R.id.rbtOption3:
-                        correctAns = "option" + 3;
+                        correctAns = edtOption3.getText().toString();
                         break;
                     case R.id.rbtOption4:
-                        correctAns = "option" + 4;
+                        correctAns = edtOption4.getText().toString();
                         break;
                     default:
                         // Your code
@@ -123,10 +123,14 @@ public class AddQuestion extends AppCompatActivity {
                         edtOption2.getText().toString(),
                         edtOption3.getText().toString(),
                         edtOption4.getText().toString(),
-                        correctAns, subject);
+                        correctAns,
+                        subject);
 
                 DatabaseReference databaseReference;
-                databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("Quizzes").child(subject);
+                databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(user.getUid())
+                        .child("Quizzes")
+                        .child(subject);
                 databaseReference.child(questionNo).setValue(question);
                 questionSize++;
 
