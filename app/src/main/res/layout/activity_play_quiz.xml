@@ -100,7 +100,7 @@
         android:layout_below="@id/timeQuestionContainer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="Click next button to start."
+        android:text="Tap next button to start."
         android:textColor="@color/white"
         android:textSize="16sp" />
 
@@ -118,102 +118,53 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#33385e"
-                android:id="@+id/playQuizOptionA"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:rippleColor="#355C5B">
-
-                <RadioButton
-                    android:id="@+id/playQuizOption1"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="#b3dfb2"
-                    android:button="@drawable/transparent_bg"
-                    android:paddingLeft="20dp"
-                    android:text="a."
-                    android:textColor="@color/white" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#33385e"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:rippleColor="#355C5B">
-
-                <RadioButton
-                    android:id="@+id/playQuizOption2"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="#b3dfb2"
-                    android:button="@drawable/transparent_bg"
-                    android:paddingLeft="20dp"
-                    android:text="b."
-                    android:textColor="@color/white" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#33385e"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:rippleColor="#355C5B">
-
-                <RadioButton
-                    android:id="@+id/playQuizOption3"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="#b3dfb2"
-                    android:button="@drawable/transparent_bg"
-                    android:paddingLeft="20dp"
-                    android:text="c."
-                    android:textColor="@color/white" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
-
-            <com.google.android.material.card.MaterialCardView
+            <RadioButton
+                android:id="@+id/playQuizOption1"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="#33385e"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:rippleColor="#355C5B">
+                android:backgroundTint="#b3dfb2"
+                android:paddingLeft="20dp"
+                android:text=""
+                android:textColor="@color/white" />
 
-                <RadioButton
-                    android:id="@+id/playQuizOption4"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:backgroundTint="#b3dfb2"
-                    android:button="@drawable/transparent_bg"
-                    android:paddingLeft="20dp"
-                    android:text="d."
-                    android:textColor="@color/white" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
 
-            </com.google.android.material.card.MaterialCardView>
+            <RadioButton
+                android:id="@+id/playQuizOption2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#b3dfb2"
+                android:paddingLeft="20dp"
+                android:text=""
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+            <RadioButton
+                android:id="@+id/playQuizOption3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#b3dfb2"
+                android:paddingLeft="20dp"
+                android:text=""
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+            <RadioButton
+                android:id="@+id/playQuizOption4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#b3dfb2"
+                android:paddingLeft="20dp"
+                android:text=""
+                android:textColor="@color/white" />
 
         </RadioGroup>
 

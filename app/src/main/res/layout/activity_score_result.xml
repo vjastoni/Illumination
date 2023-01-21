@@ -196,6 +196,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/totalQuestions"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/questionContainer"
@@ -262,6 +263,7 @@
                         android:paddingRight="16dp">
 
                         <TextView
+                            android:id="@+id/correctAnsNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -304,6 +306,7 @@
                         android:paddingRight="16dp">
 
                         <TextView
+                            android:id="@+id/wrongAnsNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -348,6 +351,7 @@
                         android:paddingRight="16dp">
 
                         <TextView
+                            android:id="@+id/noAnsNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -373,25 +377,13 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/reAttempt"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:backgroundTint="#797f95"
-                android:text="Re-Attempt"
+                android:text="Finish"
                 android:textColor="@color/white"
                 app:cornerRadius="99dp" />
-
-            <Space
-                android:layout_width="16dp"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:backgroundTint="#00b3fe"
-                android:text="View Answer"
-                android:textColor="@color/white"
-                app:cornerRadius="99dp" />
-
 
         </LinearLayout>
 

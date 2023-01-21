@@ -16,10 +16,12 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.illumination_test.Fragment.QuestionEdit;
 import com.example.illumination_test.OOP.CurrentQuiz;
 import com.example.illumination_test.OOP.Question;
+import com.example.illumination_test.OOP.Score;
 import com.example.illumination_test.R;
 import com.example.illumination_test.RecViewClass.Quiz;
 import com.google.android.material.card.MaterialCardView;
@@ -30,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +47,7 @@ public class PlayQuiz extends AppCompatActivity {
     Toolbar backButton;
     RadioGroup playQuizOptionContainer;
     RadioButton playQuizOption1, playQuizOption2, playQuizOption3, playQuizOption4;
-    MaterialCardView btnNextQuestion, btnPreviousQuestion, playQuizOptionA;
+    MaterialCardView btnNextQuestion, btnPreviousQuestion;
     TextView playQuizQuestion, playQuizQuestionCounter;
 
     private int questionCounter;
@@ -55,7 +58,8 @@ public class PlayQuiz extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ArrayList<CurrentQuiz> playQuestions = new ArrayList<>();
     String selectedAns = "";
-    ArrayList<String> answers = new ArrayList<>();
+    ArrayList<String> answers;
+    Score scores;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -75,7 +79,6 @@ public class PlayQuiz extends AppCompatActivity {
         playQuizOption2 = findViewById(R.id.playQuizOption2);
         playQuizOption3 = findViewById(R.id.playQuizOption3);
         playQuizOption4 = findViewById(R.id.playQuizOption4);
-        playQuizOptionA = findViewById(R.id.playQuizOptionA);
 
         quiz = getIntent().getParcelableExtra(QUIZ);
         String subject = quiz.getSubject();
@@ -83,6 +86,7 @@ public class PlayQuiz extends AppCompatActivity {
 
         final int[] questionNo = {1};
         questionCounter = -1;
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
@@ -107,6 +111,7 @@ public class PlayQuiz extends AppCompatActivity {
                                     questions.getSubject()));
                             questionNo[0]++;
                             questionCountTotal = playQuestions.size();
+                            answers = new ArrayList<>(Collections.nCopies(questionCountTotal, ""));
 
                         }
                     }
@@ -122,23 +127,41 @@ public class PlayQuiz extends AppCompatActivity {
         btnNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(questionCounter != -1 && !answers.isEmpty()){
+                    setNewAnswer(selectedAns, questionCounter);
+                }
                 questionCounter++;
+                if(questionCounter > questionCountTotal - 1 ){
+                    finishQuiz();
+                    return;
+                }
                 showNextQuestion(questionCounter);
+                if(!answers.isEmpty() && answers.size() > questionCounter){
+                    showAnswer(questionCounter);
+                }
             }
         });
 
         btnPreviousQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(questionCounter > questionCountTotal - 1)) setNewAnswer(selectedAns, questionCounter);
                 questionCounter--;
                 showNextQuestion(questionCounter);
+                showAnswer(questionCounter);
             }
         });
 
         submitExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                checkAnswers();
+
                 Intent intent = new Intent(getApplicationContext(), ScoreResult.class);
+                intent.putExtra("total", scores.getTotal());
+                intent.putExtra("correct", scores.getCorrectAns());
+                intent.putExtra("wrong", scores.getWrongAns());
+                intent.putExtra("noans", scores.getNoAns());
                 startActivity(intent);
             }
         });
@@ -184,25 +207,97 @@ public class PlayQuiz extends AppCompatActivity {
                         playQuizOption4.setTextColor(Color.parseColor("#667aff"));
                         break;
                     default:
+                        playQuizOption1.setTextColor(Color.parseColor("#FFFFFF"));
+                        playQuizOption2.setTextColor(Color.parseColor("#FFFFFF"));
+                        playQuizOption3.setTextColor(Color.parseColor("#FFFFFF"));
+                        playQuizOption4.setTextColor(Color.parseColor("#FFFFFF"));
                         break;
                 }
             }
         });
     }
 
-    private void showNextQuestion(int number) {
+    private void showNextQuestion(int pointer) {
+        submitExam.setEnabled(false);
+        btnNextQuestion.setEnabled(true);
+        playQuizOptionContainer.clearCheck();
         if(questionCounter == 0 ) {
             btnPreviousQuestion.setEnabled(false);
         }else{
             btnPreviousQuestion.setEnabled(true);
         }
-        currentQuestion = playQuestions.get(number);
-        playQuizQuestionCounter.setText(number+1 + "/" + questionCountTotal);
+        currentQuestion = playQuestions.get(pointer);
+        playQuizQuestionCounter.setText(pointer+1 + "/" + questionCountTotal);
         playQuizQuestion.setText(currentQuestion.getQuestion());
-        playQuizOption1.setText("a.   " + currentQuestion.getOption1());
-        playQuizOption2.setText("b.   " + currentQuestion.getOption2());
-        playQuizOption3.setText("c.   " + currentQuestion.getOption3());
-        playQuizOption4.setText("d.   " + currentQuestion.getOption4());
+        playQuizOption1.setText(currentQuestion.getOption1());
+        playQuizOption1.setClickable(true);
+        playQuizOption2.setText(currentQuestion.getOption2());
+        playQuizOption2.setClickable(true);
+        playQuizOption3.setText(currentQuestion.getOption3());
+        playQuizOption3.setClickable(true);
+        playQuizOption4.setText(currentQuestion.getOption4());
+        playQuizOption4.setClickable(true);
 
+    }
+
+    private void setNewAnswer(String answer, int pointer){
+        answers.set(pointer, answer);
+    }
+
+    private void showAnswer(int pointer){
+        String currentAns = answers.get(pointer);
+
+        if(currentAns.equals(currentQuestion.getOption1())){
+            selectedAns = currentAns;
+            playQuizOption1.setChecked(true);
+        }else if(currentAns.equals(currentQuestion.getOption2())){
+            selectedAns = currentAns;
+            playQuizOption2.setChecked(true);
+        }else if(currentAns.equals(currentQuestion.getOption3())){
+            selectedAns = currentAns;
+            playQuizOption3.setChecked(true);
+        }else if(currentAns.equals(currentQuestion.getOption4())){
+            selectedAns = currentAns;
+            playQuizOption4.setChecked(true);
+        }else{
+            selectedAns = "";
+            playQuizOptionContainer.clearCheck();
+        }
+    }
+
+    private void finishQuiz(){
+        submitExam.setEnabled(true);
+        btnNextQuestion.setEnabled(false);
+        playQuizOptionContainer.clearCheck();
+        playQuizQuestion.setText("End of quiz, tap check button to finish quiz.");
+        playQuizOption1.setClickable(false);
+        playQuizOption1.setText("");
+        playQuizOption2.setClickable(false);
+        playQuizOption2.setText("");
+        playQuizOption3.setClickable(false);
+        playQuizOption3.setText("");
+        playQuizOption4.setClickable(false);
+        playQuizOption4.setText("");
+    }
+
+    private void checkAnswers(){
+        int correctAns = 0;
+        int wrongAns = 0;
+        int noAns = 0;
+        int total = 0;
+        for(int i = 0; i < answers.size(); i++){
+            CurrentQuiz question = playQuestions.get(i);
+            if(answers.get(i).equals(question.getCorrectAns())){
+                correctAns++;
+            }else{
+                wrongAns++;
+            }
+            if(answers.get(i).equals("")){
+                noAns++;
+            }
+            total = questionCountTotal;
+        }
+
+        scores = new Score(total, correctAns, wrongAns, noAns);
     }
 }
