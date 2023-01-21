@@ -107,6 +107,13 @@ public class UpdateQuestion extends AppCompatActivity {
             }
         });
 
+        addQuestionToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     public void showQuestion() {
@@ -119,29 +126,23 @@ public class UpdateQuestion extends AppCompatActivity {
         sOption4 = intent.getStringExtra("option4");
         sAnswer = intent.getStringExtra("answer");
 
-        switch (sAnswer){
-            case "option1":
-                rbtUpdateOption1.setChecked(true);
-                break;
-            case "option2":
-                rbtUpdateOption2.setChecked(true);
-                break;
-            case "option3":
-                rbtUpdateOption3.setChecked(true);
-                break;
-            case "option4":
-                rbtUpdateOption4.setChecked(true);
-                break;
-            default:
-                break;
-        }
-
-
         updateQuestion.setText(sQuestion);
         updateOption1.setText(sOption1);
         updateOption2.setText(sOption2);
         updateOption3.setText(sOption3);
         updateOption4.setText(sOption4);
+
+        if(sAnswer.equals(sOption1)){
+            rbtUpdateOption1.setChecked(true);
+        }else if(sAnswer.equals(sOption2)){
+            rbtUpdateOption2.setChecked(true);
+        }else if(sAnswer.equals(sOption3)){
+            rbtUpdateOption3.setChecked(true);
+        }else if(sAnswer.equals(sOption4)){
+            rbtUpdateOption4.setChecked(true);
+        }else{
+            rdgOptionsContainer.clearCheck();
+        }
 
     }
 
