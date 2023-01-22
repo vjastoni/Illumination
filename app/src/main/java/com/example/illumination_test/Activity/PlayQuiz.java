@@ -43,7 +43,7 @@ public class PlayQuiz extends AppCompatActivity {
 
     Quiz quiz;
 
-    ImageButton submitExam;
+    ImageButton submitExam, btnFavorites;
     Toolbar backButton;
     RadioGroup playQuizOptionContainer;
     RadioButton playQuizOption1, playQuizOption2, playQuizOption3, playQuizOption4;
@@ -79,6 +79,7 @@ public class PlayQuiz extends AppCompatActivity {
         playQuizOption2 = findViewById(R.id.playQuizOption2);
         playQuizOption3 = findViewById(R.id.playQuizOption3);
         playQuizOption4 = findViewById(R.id.playQuizOption4);
+        btnFavorites = findViewById(R.id.btnFavorites);
 
         quiz = getIntent().getParcelableExtra(QUIZ);
         String subject = quiz.getSubject();
@@ -121,6 +122,13 @@ public class PlayQuiz extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        
+        btnFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(PlayQuiz.this, "Saved to Favorites.", Toast.LENGTH_SHORT).show();
             }
         });
 

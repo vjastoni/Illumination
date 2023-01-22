@@ -49,7 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_baseline_access_time_24"
-                app:tint="@color/white"/>
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,8 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:backgroundTint="#303457"
                     android:layout_marginRight="10dp"
+                    android:backgroundTint="#303457"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -110,63 +110,73 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/playQuizQuestion"
         android:layout_marginTop="60dp"
+        android:padding="16dp"
         android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/playQuizOptionContainer"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:backgroundTint="#393e64">
 
-            <RadioButton
-                android:id="@+id/playQuizOption1"
+            <RadioGroup
+                android:id="@+id/playQuizOptionContainer"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="#b3dfb2"
-                android:paddingLeft="20dp"
-                android:text=""
-                android:textColor="@color/white" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="8dp">
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                <RadioButton
+                    android:id="@+id/playQuizOption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#b3dfb2"
+                    android:paddingLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/white" />
 
-            <RadioButton
-                android:id="@+id/playQuizOption2"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="#b3dfb2"
-                android:paddingLeft="20dp"
-                android:text=""
-                android:textColor="@color/white" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                <RadioButton
+                    android:id="@+id/playQuizOption2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#b3dfb2"
+                    android:paddingLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/white" />
 
-            <RadioButton
-                android:id="@+id/playQuizOption3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="#b3dfb2"
-                android:paddingLeft="20dp"
-                android:text=""
-                android:textColor="@color/white" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                <RadioButton
+                    android:id="@+id/playQuizOption3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#b3dfb2"
+                    android:paddingLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/white" />
 
-            <RadioButton
-                android:id="@+id/playQuizOption4"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="#b3dfb2"
-                android:paddingLeft="20dp"
-                android:text=""
-                android:textColor="@color/white" />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/playQuizOption4"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#b3dfb2"
+                    android:paddingLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+            </RadioGroup>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
@@ -199,8 +209,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:tint="@color/white"
-                    android:src="@drawable/ic_baseline_arrow_left_24" />
+                    android:src="@drawable/ic_baseline_arrow_left_24"
+                    app:tint="@color/white" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -237,6 +247,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageButton
+                        android:id="@+id/btnFavorites"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
@@ -286,8 +297,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:tint="@color/white"
-                        android:src="@drawable/ic_baseline_arrow_right_24" />
+                        android:src="@drawable/ic_baseline_arrow_right_24"
+                        app:tint="@color/white" />
 
                 </com.google.android.material.card.MaterialCardView>
 

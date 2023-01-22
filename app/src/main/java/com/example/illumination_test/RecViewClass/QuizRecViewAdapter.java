@@ -88,6 +88,7 @@ public class QuizRecViewAdapter extends RecyclerView.Adapter<QuizRecViewAdapter.
             parent = itemView.findViewById(R.id.parent);
             quizItem = itemView.findViewById(R.id.quizItem);
             playButton = itemView.findViewById(R.id.playButton);
+
         }
     }
 }

@@ -83,7 +83,7 @@
                             android:layout_below="@+id/totalTimer"
                             android:layout_marginTop="6dp"
                             android:layout_marginRight="116dp"
-                            android:text="Total Question: 1"
+                            android:text="Total Question: 10"
                             android:textColor="@color/white" />
 
                         <TextView
@@ -92,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_toRightOf="@+id/totalTimer"
-                            android:text="06-12-2022"
+                            android:text="01-23-2023"
                             android:textColor="@color/white" />
 
                         <TextView

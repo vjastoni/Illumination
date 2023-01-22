@@ -58,9 +58,6 @@ public class DialogAddCategory extends AppCompatDialogFragment {
                 System.out.println(questionsMap);
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("Quizzes");
                 databaseReference.child(newCategory).setValue(exam);
-
-
-
                 dismiss();
             }
         });
